@@ -10,12 +10,12 @@ class AutoCompletionCommand(sublime_plugin.EventListener):
         if len(prefix) < 1:
             return snippets
         else:
-            regions = view.find_all(prefix + "[\w-]*", sublime.IGNORECASE)
+            regions = view.find_all('[^\w-]' + prefix + '[\w-]*', sublime.IGNORECASE)
 
         strs = []
 
         for r in regions:
-            s = view.substr(r)
+            s = view.substr(r)[1:]
             if s not in strs and s != prefix:
                 # print('---分割线1---')
                 # print(s)
