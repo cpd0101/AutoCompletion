@@ -63,8 +63,7 @@ class AutoCompletionCommand(sublime_plugin.EventListener):
                 path = namespace_dict.get(s[0][1:])
                 s = s[1].split('/')
                 s = s[:len(s) - 1]
-                for t in s:
-                    path += '/' + t
+                path = os.path.join(path, '/'.join(s))
                 file_list = os.listdir(path)
                 for f in file_list:
                     if f.startswith('.'):
