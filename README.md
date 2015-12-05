@@ -1,1 +1,1 @@
-# AutoCompletion
+# AutoCompletion Sublime Plugin
