@@ -97,7 +97,7 @@ class AutoCompletionCommand(sublime_plugin.EventListener):
                 strs.append(s)
 
         for x in strs:
-            snippets += [(x + '(AutoCompletion)', x)]
+            snippets += [(x + ' <AutoCompletion>', x)]
 
         # print(snippets)
 
