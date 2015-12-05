@@ -1,6 +1,6 @@
-import sublime, sublime_plugin, os, re, codecs
+﻿import sublime, sublime_plugin, os, re, codecs
 
-root_dir = '/Users/baidu/workspace/fe'
+workspace_dir = '/Users/baidu/workspace/fe'
 namespace_dict = {}
 
 # 插件加载 插件系统回调函数
@@ -9,42 +9,25 @@ def plugin_loaded():
 
 # 初始化配置
 def init_settings():
-    init_namesapce()
-    
+    init_namespace()
+  
 # 初始化namespace
-def init_namesapce():
-    for root, subFolders, files in os.walk(root_dir):
-        # 忽略page文件夹
-        if 'page' in subFolders:
-            subFolders.remove('page')
+def init_namespace():
+    for root, subFolders, files in os.walk(workspace_dir):
+        # 需要忽略的文件夹
+        ignores = ['page', 'plugin', 'static', 'test', 'widget']
+        for folder in ignores:
+            if folder in subFolders:
+                subFolders.remove(folder)
 
-        # 忽略widget文件夹
-        if 'widget' in subFolders:
-            subFolders.remove('widget')
-
-        # 忽略static文件夹
-        if 'static' in subFolders:
-            subFolders.remove('static')
-
-        # 忽略test文件夹
-        if 'test' in subFolders:
-            subFolders.remove('test')
-
-        # 忽略plugin文件夹
-        if 'plugin' in subFolders:
-            subFolders.remove('plugin')
-
-        # 查找fis-conf.js文件
-        for f in files:
-            if 'fis-conf.js' == f:
-                # 以utf-8编码打开文件
-                fis_conf = codecs.open(os.path.join(root, f), 'r', 'utf-8')
-                for line in fis_conf.readlines():
-                    # 查找namespace
-                    search = re.search('namespace[\s\:]*[\"\']([\w-]+)[\"\']', line)
-                    if search:
-                        namespace_dict[search.group(1)] = root
-                        break
+        # 当前目录是否存在fis-conf.js文件
+        if 'fis-conf.js' in files:
+            # 以utf-8编码打开fis-conf.js文件
+            fis_conf = codecs.open(os.path.join(root, 'fis-conf.js'), 'r', 'utf-8')
+            # 查找文件内的namespace
+            search = re.search('namespace[\s\:]*[\"\']([\w-]+)[\"\']', fis_conf.read())
+            if search:
+               namespace_dict[search.group(1)] = root 
 
 
 # AutoCompletionCommand名字中Command为必须的
