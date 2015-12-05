@@ -70,9 +70,9 @@ class AutoCompletionCommand(sublime_plugin.EventListener):
                     if f.startswith('.'):
                         continue
                     if '.' in f:
-                        snippets += [(f + '(AutoCompletion)', f)]
+                        snippets += [(f, f)]
                     else:
-                        snippets += [(f + '(AutoCompletion)', f + '/')]
+                        snippets += [(f + '/', f + '/')]
                 return snippets
 
         # 提示 fis namespace
@@ -81,7 +81,7 @@ class AutoCompletionCommand(sublime_plugin.EventListener):
             if r.contains(locations[0]):   
                 for k in namespace_dict:
                     if re.match(prefix, k):
-                        snippets += [(k + '(AutoCompletion)', k + ':')]
+                        snippets += [(k + ':', k + ':')]
                 return snippets
 
         if len(prefix) < 1:
