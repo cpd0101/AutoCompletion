@@ -58,7 +58,7 @@ class AutoCompletionCommand(sublime_plugin.EventListener):
                 return snippets
 
         # 提示 fis namespace
-        regions = view.find_all('[\"\'].*[\"\']', sublime.IGNORECASE)
+        regions = view.find_all('[\"\'][\"\']', sublime.IGNORECASE)
         for r in regions:
             if r.contains(locations[0]):   
                 for k in namespace_dict:
