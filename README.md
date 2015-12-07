@@ -9,7 +9,7 @@
 * 下载本项目，比如：git clone https://github.com/cpd0101/AutoCompletion
 * 进入packages目录：Sublime Text -> Preferences -> Browse Packages...
 * 复制下载的AutoCompletion目录到刚才的packges目录里。
-* 打开AutoCompletion.py，将 workspace_dir = '/Users/baidu/workspace/fe' 里的'/Users/baidu/workspace/fe'修改成自己的工作目录然后保存即可。
+* 打开AutoCompletion.py，将 workspace_dir = '/workspace/fe' 里的'/workspace/fe'修改成自己的工作目录然后保存即可。
 
 #### 兼容性
 * 只在Sublime Text 3上进行过测试，如遇兼容性问题请及时反馈。

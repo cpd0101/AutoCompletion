@@ -1,6 +1,6 @@
 ﻿import sublime, sublime_plugin, os, re, codecs
 
-workspace_dir = '/Users/baidu/workspace/fe'
+workspace_dir = '/workspace/fe'
 namespace_dict = {}
 
 # 插件加载 插件系统回调函数
